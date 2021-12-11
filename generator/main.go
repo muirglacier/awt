@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/renproject/id"
+	"github.com/muirglacier/id"
 	"os"
 	"strconv"
 )

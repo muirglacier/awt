@@ -5,8 +5,8 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/renproject/aw/dht/dhtutil"
-	"github.com/renproject/id"
+	"github.com/muirglacier/aw/dht/dhtutil"
+	"github.com/muirglacier/id"
 	"sync/atomic"
 	"time"
 )

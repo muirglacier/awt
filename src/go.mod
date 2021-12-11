@@ -7,8 +7,8 @@ require (
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/onsi/ginkgo v1.14.0
 	github.com/onsi/gomega v1.10.1
-	github.com/renproject/aw v0.4.1-0.20210404190349-eef9d825d806
-	github.com/renproject/id v0.4.2
+	github.com/muirglacier/aw v0.6.1
+	github.com/muirglacier/id v0.4.4
 	github.com/spf13/cobra v1.1.3
 	github.com/spf13/viper v1.7.1
 	go.uber.org/zap v1.16.0
