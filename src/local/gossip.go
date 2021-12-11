@@ -4,15 +4,16 @@ import (
 	"awt/test"
 	"context"
 	"fmt"
-	"github.com/muirglacier/aw/dht/dhtutil"
-	"github.com/muirglacier/aw/peer"
-	"github.com/muirglacier/aw/wire"
-	"github.com/muirglacier/id"
 	"os"
 	"path/filepath"
 	"runtime"
 	"sync/atomic"
 	"time"
+
+	"github.com/muirglacier/aw/dht/dhtutil"
+	"github.com/muirglacier/aw/peer"
+	"github.com/muirglacier/aw/wire"
+	"github.com/muirglacier/id"
 )
 
 const name = "Gossip"
@@ -82,7 +83,7 @@ func (gt *GossipTest) Perf(numPeers int, topology test.Topology, outputFilePath 
 
 		index := i
 		go func() {
-			transports[index].Receive(context.Background(), func() func(from id.Signatory, msg wire.Msg) error {
+			transports[index].Receive(context.Background(), func() func(from id.Signatory, msg wire.Packet) error {
 				var x int64 = 0
 				go func() {
 					//var seconds int64 = 0
@@ -102,12 +103,12 @@ func (gt *GossipTest) Perf(numPeers int, topology test.Topology, outputFilePath 
 					}
 
 				}()
-				return func(from id.Signatory, msg wire.Msg) error {
+				return func(from id.Signatory, msg wire.Packet) error {
 					atomic.AddInt64(&x, 1)
-					if err := peers[index].Syncer().DidReceiveMessage(from, msg); err != nil {
+					if err := peers[index].Syncer().DidReceiveMessage(from, msg.Msg); err != nil {
 						return err
 					}
-					if err := peers[index].Gossiper().DidReceiveMessage(from, msg); err != nil {
+					if err := peers[index].Gossiper().DidReceiveMessage(from, msg.Msg); err != nil {
 						return err
 					}
 					return nil
